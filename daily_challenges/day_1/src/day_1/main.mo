@@ -1,4 +1,7 @@
 import Array "mo:base/Array";
+import Iter "mo:base/Iter";
+import Debug "mo:base/Debug";
+import Nat "mo:base/Nat";
 actor {
   
   // Challenge 1 : Write a function add that takes two natural numbers n and m and returns the sum
@@ -48,12 +51,12 @@ actor {
 
   // Challenge 7 : Write a function sum_of_array that takes an array of natural numbers and returns the sum. This function will returns 0 if the array is empty.
 
-  public func sum_of_array(arr: [Nat]): async Nat {
-    if (arr.size() == 0){
+  public func sum_of_array(array: [Nat]): async Nat {
+    if (array.size() == 0){
       return 0;
     }else {
       var sum: Nat = 0;
-      for (value in arr.vals()){
+      for (value in array.vals()){
         sum:= sum + value;
       };
       return sum;
@@ -62,12 +65,12 @@ actor {
 
   // Challenge 8 : Write a function maximum that takes an array of natural numbers and returns the maximum value in the array. This function will returns 0 if the array is empty.
 
-  public func maximum(arr:[Nat]): async Nat {
-    if (arr.size() == 0){
+  public func maximum(array:[Nat]): async Nat {
+    if (array.size() == 0){
       return 0;
     } else {
       var max_sum: Nat = 0;
-      for (value in arr.vals()){
+      for (value in array.vals()){
         if (value > max_sum){
           max_sum := value;
         };
@@ -78,9 +81,14 @@ actor {
 
   // Challenge 9 : Write a function remove_from_array that takes 2 parameters : an array of natural numbers and a natural number n and returns a new array where all occurences of n have been removed (order should remain unchanged).
   
-  public func remove_from_array(arr:[Nat], n:Nat): async [Nat] {
-    return Array.filter(arr, func(val:Nat): Bool{val != n});
+  public func remove_from_array(array:[Nat], n:Nat): async [Nat] {
+    return Array.filter(array, func(val:Nat): Bool{val != n});
 
+  };
+
+
+  public func selection_sort(array:[Nat]): async [Nat] {
+    return Array.sort(array, Nat.compare);
   };
 
   
