@@ -87,8 +87,23 @@ actor {
   };
 
 
-  public func selection_sort(array:[Nat]): async [Nat] {
-    return Array.sort(array, Nat.compare);
+  public func selection_sort(arr:[Nat]): async [Nat]{
+    let array: [var Nat] = Array.thaw<Nat>(arr); 
+    
+    let arr_size = array.size();
+    for (i in Iter.range(0,arr_size-1)){
+      var min_idx = i;
+      for (j in Iter.range(i+1,arr_size-1)){
+        if (array[min_idx] > array[j]){
+          min_idx := j;
+        };
+      };
+      let temp = array[i];
+      array[i] := array[min_idx];
+      array[min_idx] := temp;
+    };
+    
+    return Array.freeze(array);
   };
 
   
