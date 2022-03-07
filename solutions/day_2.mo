@@ -91,12 +91,6 @@ actor {
         returns a Bool indicating if c is inside t .
     */
     public func is_inside(t : Text, c : Char) : async Bool {
-        // for (char in t.chars()) {
-        //     if (c == char) {
-        //         return true;
-        //     };
-        // };
-        // return false;
         return Text.contains(t, #char(c));
     };
 
